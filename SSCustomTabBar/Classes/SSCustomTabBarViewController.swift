@@ -158,7 +158,7 @@ extension SSCustomTabBarViewController {
                 }else if  objectIndex == priviousSelectedIndex {
                     DispatchQueue.main.async {
                         UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.curveEaseInOut,.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
-//                            objectView.frame = CGRect(x: objectView.frame.origin.x, y: objectView.frame.origin.y + self.kUpAnimationPoint, width: objectView.frame.width, height: objectView.frame.height)
+                            objectView.frame = CGRect(x: objectView.frame.origin.x, y: objectView.frame.origin.y + self.kUpAnimationPoint, width: objectView.frame.width, height: objectView.frame.height)
                         }, completion: ({ (complete) in
                             print("finished7")
                         }))
