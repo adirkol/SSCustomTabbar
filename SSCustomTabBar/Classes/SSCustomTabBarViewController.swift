@@ -200,7 +200,7 @@ extension SSCustomTabBarViewController {
                    uSelf.setDefaultlayoutControlPoints(waveHeight: uSelf.minimalHeight, locationX: changeValue)
                    
                 }, completion: { _ in
-                   uSelf.animating = false
+//                   uSelf.animating = false
                    print("--finished")
                 })
                 UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.curveEaseInOut, .allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
