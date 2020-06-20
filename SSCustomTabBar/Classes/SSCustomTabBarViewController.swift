@@ -157,7 +157,7 @@ extension SSCustomTabBarViewController {
                     print(index)
                 }else if  objectIndex == priviousSelectedIndex {
                     DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.27, initialSpringVelocity: 0.0, options: [.curveEaseInOut,.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
+                        UIView.animate(withDuration: 0.9, delay: 0.0, options: [.curveEaseInOut,.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
                             objectView.frame = CGRect(x: objectView.frame.origin.x, y: objectView.frame.origin.y + self.kUpAnimationPoint, width: objectView.frame.width, height: objectView.frame.height)
                         }, completion: ({ (complete) in
                             print("finished6")
@@ -195,14 +195,14 @@ extension SSCustomTabBarViewController {
         
         if let uSelf = self.tabBar as? SSCustomTabBar {
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.27, initialSpringVelocity: 0.0, options: [.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: { () -> Void in
+                UIView.animate(withDuration: 0.9, delay: 0.0, options: [.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: { () -> Void in
                    uSelf.setDefaultlayoutControlPoints(waveHeight: uSelf.minimalHeight, locationX: changeValue)
                    
                 }, completion: { _ in
                    uSelf.animating = false
                    print("--finished")
                 })
-                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.27, initialSpringVelocity: 0.0, options: [.curveEaseInOut, .allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
+                UIView.animate(withDuration: 0.9, delay: 0.0, options: [.curveEaseInOut, .allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
                    view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - self.kUpAnimationPoint, width: view.frame.width, height: view.frame.height)
                 }, completion: { _ in
                    print("--finished2")
