@@ -202,7 +202,7 @@ extension SSCustomTabBarViewController {
                    uSelf.animating = false
                    print("--finished")
                 })
-                UIView.animate(withDuration: 5.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
+                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.curveEaseInOut, .allowUserInteraction], animations: {
                    view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - self.kUpAnimationPoint, width: view.frame.width, height: view.frame.height)
                 }, completion: { _ in
                    print("--finished2")
