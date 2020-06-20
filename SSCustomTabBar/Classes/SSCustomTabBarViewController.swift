@@ -195,7 +195,7 @@ extension SSCustomTabBarViewController {
         
         if let uSelf = self.tabBar as? SSCustomTabBar {
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 2.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.allowUserInteraction], animations: { () -> Void in
+                UIView.animate(withDuration: 0.6, delay: 0.0, usingSpringWithDamping: 0.37, initialSpringVelocity: 0.5, options: [.allowUserInteraction], animations: { () -> Void in
                    uSelf.setDefaultlayoutControlPoints(waveHeight: uSelf.minimalHeight, locationX: changeValue)
                    
                 }, completion: { _ in
