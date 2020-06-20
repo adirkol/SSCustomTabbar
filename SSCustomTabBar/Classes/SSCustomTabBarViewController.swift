@@ -145,6 +145,7 @@ extension SSCustomTabBarViewController {
             let width = UIScreen.main.bounds.width/CGFloat(items.count)
             let changeValue = (width*CGFloat(index+1))-(width/2)
             uSelf.animating = true
+            uSelf.isUserInteractionEnabled = true
             
             let orderedTabBarItemViews: [UIView] = {
                 let interactionViews = tabBar.subviews.filter({ $0 is UIControl })
