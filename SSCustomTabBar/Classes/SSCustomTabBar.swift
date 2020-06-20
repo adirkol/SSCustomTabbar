@@ -84,7 +84,7 @@ public class SSCustomTabBar: UITabBar {
     }
     var animating = false {
         didSet {
-            self.isUserInteractionEnabled = animating
+            self.isUserInteractionEnabled = !animating
             self.displayLink?.isPaused = !animating
         }
     }
