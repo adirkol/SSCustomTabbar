@@ -145,7 +145,6 @@ extension SSCustomTabBarViewController {
             let width = UIScreen.main.bounds.width/CGFloat(items.count)
             let changeValue = (width*CGFloat(index+1))-(width/2)
             uSelf.animating = true
-            uSelf.isUserInteractionEnabled = true
             
             let orderedTabBarItemViews: [UIView] = {
                 let interactionViews = tabBar.subviews.filter({ $0 is UIControl })
@@ -158,7 +157,7 @@ extension SSCustomTabBarViewController {
                     print(index)
                 }else if  objectIndex == priviousSelectedIndex {
                     DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.27, initialSpringVelocity: 0.0, options: [.curveEaseInOut,.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
+                        UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.curveEaseInOut,.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
                             objectView.frame = CGRect(x: objectView.frame.origin.x, y: objectView.frame.origin.y + self.kUpAnimationPoint, width: objectView.frame.width, height: objectView.frame.height)
                         }, completion: ({ (complete) in
                             print("finished7")
@@ -168,6 +167,7 @@ extension SSCustomTabBarViewController {
                 }
             })
             self.priviousSelectedIndex = index
+            uSelf.isUserInteractionEnabled = true
             performSpringAnimation(for: orderedTabBarItemViews[index], changeValue: changeValue)
         }
         
@@ -196,14 +196,14 @@ extension SSCustomTabBarViewController {
         
         if let uSelf = self.tabBar as? SSCustomTabBar {
             DispatchQueue.main.async {
-                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.27, initialSpringVelocity: 0.0, options: [.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: { () -> Void in
+                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: { () -> Void in
                    uSelf.setDefaultlayoutControlPoints(waveHeight: uSelf.minimalHeight, locationX: changeValue)
                    
                 }, completion: { _ in
                    uSelf.animating = false
                    print("--finished")
                 })
-                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.27, initialSpringVelocity: 0.0, options: [.curveEaseInOut, .allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
+                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.curveEaseInOut, .allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
                    view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - self.kUpAnimationPoint, width: view.frame.width, height: view.frame.height)
                 }, completion: { _ in
                    print("--finished2")
