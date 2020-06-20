@@ -10,9 +10,9 @@ import UIKit
 
 
 /// Default index value for priviousSelectedIndex
-private let defaultIndexValue = -1
+private let defaultIndexValue = -2
 
-public class SSCustomTabBarViewController: UITabBarController {
+open class SSCustomTabBarViewController: UITabBarController {
     
     // MARK: - Overrides
     
@@ -58,7 +58,7 @@ public class SSCustomTabBarViewController: UITabBarController {
     
     private var priviousSelectedIndex: Int = defaultIndexValue
     
-    override public func viewDidLoad() {
+    override open func viewDidLoad() {
         super.viewDidLoad()
         self.setObserver()
         // Do any additional setup after loading the view.
@@ -138,7 +138,7 @@ extension SSCustomTabBarViewController {
     /// - Parameters:
     ///   - tabBar: The tab bar that is being customized.
     ///   - item: The tab bar item that was selected.
-    override public func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
+    override open func tabBar(_ tabBar: UITabBar, didSelect item: UITabBarItem) {
         
         if let uSelf = self.tabBar as? SSCustomTabBar, let items = uSelf.items, let index = items.firstIndex(of: item), index != self.priviousSelectedIndex {
             
@@ -156,9 +156,14 @@ extension SSCustomTabBarViewController {
                 if index ==  objectIndex {
                     print(index)
                 }else if  objectIndex == priviousSelectedIndex {
-                    UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
-                        objectView.frame = CGRect(x: objectView.frame.origin.x, y: objectView.frame.origin.y + self.kUpAnimationPoint, width: objectView.frame.width, height: objectView.frame.height)
-                    }, completion: nil)
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 3, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [.curveEaseInOut,.allowUserInteraction,.allowAnimatedContent,.beginFromCurrentState], animations: {
+                            objectView.frame = CGRect(x: objectView.frame.origin.x, y: objectView.frame.origin.y + self.kUpAnimationPoint, width: objectView.frame.width, height: objectView.frame.height)
+                        }, completion: ({ (complete) in
+                            print("finished4")
+                        }))
+                    }
+                    
                 }
             })
             self.priviousSelectedIndex = index
@@ -189,15 +194,19 @@ extension SSCustomTabBarViewController {
     func performSpringAnimation(for view: UIView, changeValue: CGFloat) {
         
         if let uSelf = self.tabBar as? SSCustomTabBar {
-            UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
-                uSelf.setDefaultlayoutControlPoints(waveHeight: uSelf.minimalHeight, locationX: changeValue)
-                
-            }, completion: { _ in
-                uSelf.animating = false
-            })
-            UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
-                view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - self.kUpAnimationPoint, width: view.frame.width, height: view.frame.height)
-            }, completion: nil)
+            DispatchQueue.main.async {
+                 UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: [], animations: { () -> Void in
+                   uSelf.setDefaultlayoutControlPoints(waveHeight: uSelf.minimalHeight, locationX: changeValue)
+                   
+                }, completion: { _ in
+                   uSelf.animating = false
+//                   print("--finished")
+                })
+                UIView.animate(withDuration: 0.9, delay: 0.0, usingSpringWithDamping: 0.57, initialSpringVelocity: 0.0, options: .curveEaseInOut, animations: {
+                   view.frame = CGRect(x: view.frame.origin.x, y: view.frame.origin.y - self.kUpAnimationPoint, width: view.frame.width, height: view.frame.height)
+                }, completion: nil)
+            }
+           
         }
     }
     
