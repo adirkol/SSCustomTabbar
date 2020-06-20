@@ -167,7 +167,7 @@ extension SSCustomTabBarViewController {
                 }
             })
             self.priviousSelectedIndex = index
-//            performSpringAnimation(for: orderedTabBarItemViews[index], changeValue: changeValue)
+            performSpringAnimation(for: orderedTabBarItemViews[index], changeValue: changeValue)
         }
         
     }
